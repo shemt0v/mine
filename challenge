@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char** argv, char** env) {
+    unsigned int local_36;
+    unsigned char local_32;
+    unsigned int local_31;
+    unsigned int local_2d;
+    unsigned int local_29;
+    unsigned int local_25;
+    unsigned short local_21;
+    char local_1f[6];
+    char local_1a;
+    char local_19;
+    char* local_18;
+    int local_14;
+
+    //main();
+    local_25 = 0x35706635;
+    local_21 = 0x73;
+    local_31 = 0x6866234a;
+    local_2d = 0x7667236f;
+    local_29 = 0x776c21;
+    local_36 = 0x37333331;
+    local_32 = 0;
+    local_18 = getenv("GREENIE");
+    if ((1 < argc) && (local_18 != NULL)) {
+        strncpy(local_1f, argv[1], 5);
+        for (local_14 = 0; local_14 < 5; local_14++) {
+            local_1a = (char)local_14 + local_1f[local_14] + '\x01';
+            if (local_1a != *((char*)&local_25 + local_14)) {
+                puts("wrong\n");
+                printf("local_1a: %c\n", local_1a);
+                printf("param: %c\n", *((char*)&local_25 + local_14));
+                exit(0);
+            }
+        }
+        local_14 = 0;
+        while (1) {
+            if (10 < local_14) {
+                putchar(*local_18 + 0x1d);
+                putchar(local_18[1] + 0x4c);
+                putchar(local_18[2] - 2);
+                putchar(local_18[3] + 6);
+                putchar(local_18[4] + 0xd);
+                putchar(local_18[5] + 0x23);
+                putchar(local_18[6] + 0x15);
+                putchar(local_18[7] - 0xd);
+                putchar(local_18[8] + 0x13);
+                putchar(local_18[9] + 9);
+                printf("%c = %#x\n", local_18[10] + '\t', local_18[10] + '\t');
+                return 0;
+            }
+            local_19 = *((char*)&local_36 + local_14 % 4);
+
+            if (local_19 + -0x30 + (int)local_18[local_14] != (int)*((char*)&local_31 + local_14)) printf("this one is wrong:\n");
+            else printf("\nthis one is right:\n");
+            printf("you have: %c\n", local_19 + -0x30 + (int)local_18[local_14]);
+            printf("you also have: %#x\n", local_19 + -0x30 + (int)local_18[local_14]);
+            printf("you need: %c\n", ((int)*((char*)&local_31 + local_14)));
+            printf("you also need: %#x\n", (int)*((char*)&local_31 + local_14));
+            printf("you're looking for a %c\n\n", (int)*((char*)&local_31 - local_14));
+            printf("this is number: %d\n", local_14+1);
+            printf("char in GREENIE: %c\n\n", (int)local_18[local_14]);
+            printf("___________________________________\n");
+                //break;
+            local_14++;
+        }
+        puts("wrong");
+        exit(0);
+    }
+    puts("An error occurred");
+    exit(0);
+}
